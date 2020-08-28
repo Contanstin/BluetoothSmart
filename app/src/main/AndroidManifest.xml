@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bluetoothsmart">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- 定位权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 配置蓝牙硬件必须，配置仅支持BLE -->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" /> <!-- GPS硬件模块功能使用 -->
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.BaseActivity" />
+        <activity android:name=".Activity.ModificationActivity" />
+
+        <service
+            android:name=".Service.BluetoothService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".Activity.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
