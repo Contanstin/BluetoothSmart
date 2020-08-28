@@ -50,19 +50,29 @@
         android:layout_height="45dp"
         android:layout_marginTop="30dp"
         android:gravity="center_vertical"
-        android:hint="请输入新的间隔"
+        android:hint="请输入新的间隔,范围为6-1600"
         android:textColor="#3B3B3B"
         android:textSize="16sp"
         android:maxLines="1"/>
     <Button
-        android:id="@+id/startset"
+        android:id="@+id/startsetName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:background="@drawable/button_blue"
-        android:text="开始设置"/>
+        android:text="开始设置名字"/>
+
+    <Button
+        android:id="@+id/startsetInterval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/button_blue"
+        android:text="开始设置间隔"/>
 
 
 </LinearLayout>

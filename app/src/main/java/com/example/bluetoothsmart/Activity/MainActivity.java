@@ -2,6 +2,7 @@ package com.example.bluetoothsmart.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -50,6 +51,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final String[] permissions = new String[]{ Manifest.permission.ACCESS_COARSE_LOCATION};
+        Config.requestPermissions(permissions, this);
         //获取蓝牙服务
         if(!ClientManager.getClient().isBleSupported()){
             Toast.makeText(this,"不支持蓝牙！",Toast.LENGTH_SHORT).show();
@@ -92,15 +95,7 @@ public class MainActivity extends BaseActivity {
 
 
     private void init(){
-        btn_search=findViewById(R.id.search);
-        btn_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bleDeviceList.clear();
-                bleDeviceAdapter.notifyDataSetChanged();
-                scanBleDevice(true);
-            }
-        });
+
         bleDeviceAdapter=new BleDeviceAdapter(MainActivity.this,bleDeviceList);
         list_device=findViewById(R.id.device_list);
 
@@ -128,6 +123,15 @@ public class MainActivity extends BaseActivity {
             }
         });
         list_device.setAdapter(bleDeviceAdapter);
+        btn_search=findViewById(R.id.search);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bleDeviceList.clear();
+                bleDeviceAdapter.notifyDataSetChanged();
+                scanBleDevice(true);
+            }
+        });
     }
     /**
      * 蓝牙扫描
@@ -137,12 +141,14 @@ public class MainActivity extends BaseActivity {
         if(enable){
             bleDeviceList.clear();
             ClientManager.getClient().search(request, bleSearchResponse);
+        }else {
+
         }
         invalidateOptionsMenu();
     }
     SearchRequest request = new SearchRequest.Builder()
             //扫描BLE设备4秒
-            .searchBluetoothLeDevice(4000)
+            .searchBluetoothLeDevice(10000)
             //扫描经典蓝牙2秒
             .searchBluetoothClassicDevice(2000)
             //扫描BLE设备4秒
@@ -173,7 +179,7 @@ public class MainActivity extends BaseActivity {
                     }
                 }
                 else{
-                    if(device.getName() != null){
+                    if(device.getName() != null && device.getName().contains( "MT")){
                         bleDeviceList.add(device);
                         bleDeviceAdapter.notifyDataSetChanged();
                     }
