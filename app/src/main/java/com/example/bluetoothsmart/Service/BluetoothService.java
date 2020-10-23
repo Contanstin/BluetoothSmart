@@ -120,8 +120,29 @@ public class BluetoothService extends Service {
                                     .getUuid()
                                     .toString()
                                     .equals(UUID_Interval)) {
+                                final int charaProp = gattCharacteristic
+                                        .getProperties();
+                                if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
                                     BLUE_DATA = gattCharacteristic;
+                                    readBleuData();
+                                    setCharacteristicNotification(
+                                            gattCharacteristic, true);
+                                    BluetoothGattDescriptor clientConfig = gattCharacteristic
+                                            .getDescriptor(UUID_CONFIG_DESCRIPTOR);
 
+                                    if (clientConfig != null) {
+                                        clientConfig
+                                                .setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+                                        mBluetoothGatt
+                                                .writeDescriptor(clientConfig);
+
+                                        Log.e(TAG,
+                                                "setCharacteristicNotification success!");
+                                    } else {
+                                        Log.e(TAG,
+                                                "setCharacteristicNotification failed! descriptor is null! ");
+                                    }
+                                }
                             }
                         }
 
@@ -383,10 +404,14 @@ public class BluetoothService extends Service {
      */
     public void writeBLueToothInterval(byte[] interval) {
 
+
+
         sendCommandImmediate(BLUE_DATA, mBluetoothGatt, interval);
 
 
     }
+
+
 
 
     /**

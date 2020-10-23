@@ -7,13 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:background="#4698F1" >
-        <ImageButton
-            android:id="@+id/title_backBtn"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/title_back"
-             />
+<!--        <ImageButton-->
+<!--            android:id="@+id/title_backBtn"-->
+<!--            android:layout_width="46dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:src="@mipmap/title_back"-->
+<!--             />-->
         <TextView
             android:id="@+id/title_centerText"
             android:layout_width="wrap_content"
@@ -27,23 +27,41 @@
             android:id="@+id/ble_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
+
             android:src="@mipmap/ble_disconnect"
-            android:visibility="gone"
+
             />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp">
+    <TextView
+        android:id="@+id/MT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:text="MT"/>
+
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/MT"
+        android:layout_marginLeft="5dp"
         android:gravity="center_vertical"
         android:hint="请输入新的名字"
         android:textColor="#3B3B3B"
         android:textSize="16sp"
+        android:digits="1234567890"
         android:maxLines="1"/>
+
+    </RelativeLayout>
+
     <EditText
         android:id="@+id/Interval"
         android:layout_width="match_parent"
@@ -53,6 +71,7 @@
         android:hint="请输入新的间隔,范围为6-1600"
         android:textColor="#3B3B3B"
         android:textSize="16sp"
+        android:visibility="gone"
         android:maxLines="1"/>
     <Button
         android:id="@+id/startsetName"
@@ -72,6 +91,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:background="@drawable/button_blue"
+        android:visibility="gone"
         android:text="开始设置间隔"/>
 
 

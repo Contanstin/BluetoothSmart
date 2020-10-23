@@ -20,7 +20,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/button_blue"
         android:text="搜索"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="15sp" />
     <ListView
         android:id="@+id/device_list"

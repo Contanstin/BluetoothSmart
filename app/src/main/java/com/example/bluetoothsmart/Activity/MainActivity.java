@@ -114,8 +114,8 @@ public class MainActivity extends BaseActivity {
                     public void run() {
                         closeProgress();
                         if(!application.isConnect){
-                            Toast.makeText(MainActivity.this,"连接超时，请检查蓝牙设备是否正常！",
-                                    Toast.LENGTH_SHORT).show();
+
+
                         }
                     }
                 },4000);
@@ -147,7 +147,7 @@ public class MainActivity extends BaseActivity {
         invalidateOptionsMenu();
     }
     SearchRequest request = new SearchRequest.Builder()
-            //扫描BLE设备4秒
+            //扫描BLE设备10秒
             .searchBluetoothLeDevice(10000)
             //扫描经典蓝牙2秒
             .searchBluetoothClassicDevice(2000)
@@ -179,8 +179,11 @@ public class MainActivity extends BaseActivity {
                     }
                 }
                 else{
-                    if(device.getName() != null && device.getName().contains( "MT")){
-                        bleDeviceList.add(device);
+                    if(device.getName() != null){
+//                        && device.getName().contains("MT")){
+                        if(!device.getName().equals("NULL")) {
+                            bleDeviceList.add(device);
+                        }
                         bleDeviceAdapter.notifyDataSetChanged();
                     }
                 }
