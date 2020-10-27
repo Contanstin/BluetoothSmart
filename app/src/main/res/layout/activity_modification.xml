@@ -7,13 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:background="#4698F1" >
-<!--        <ImageButton-->
-<!--            android:id="@+id/title_backBtn"-->
-<!--            android:layout_width="46dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:src="@mipmap/title_back"-->
-<!--             />-->
+        <ImageButton
+            android:id="@+id/title_backBtn"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/title_back"
+             />
         <TextView
             android:id="@+id/title_centerText"
             android:layout_width="wrap_content"
@@ -27,9 +27,9 @@
             android:id="@+id/ble_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-
+            android:layout_marginRight="10dp"
             android:src="@mipmap/ble_disconnect"
 
             />

@@ -70,7 +70,7 @@ public class ModificationActivity extends BaseActivity implements View.OnClickLi
     private void init() {
         ble_connect = findViewById(R.id.ble_state);
         ble_connect.setVisibility(View.VISIBLE);
-//        back=findViewById(R.id.title_backBtn);
+        back=findViewById(R.id.title_backBtn);
         textView = findViewById(R.id.title_centerText);
         name = findViewById(R.id.name);
         interval = findViewById(R.id.Interval);
@@ -79,17 +79,20 @@ public class ModificationActivity extends BaseActivity implements View.OnClickLi
         ble_connect.setOnClickListener(this);
         startsetName.setOnClickListener(this);
         startsetInterval.setOnClickListener(this);
-//        back.setOnClickListener(this);
+        back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-//            case R.id.title_backBtn:
-//                Intent intent=new Intent(ModificationActivity.this,MainActivity.class);
-//                startActivity(intent);
-//                ModificationActivity.this.finish();
-//                break;
+            case R.id.title_backBtn:
+                if(application.isConnect){
+                    mBluetoothService.disconnect();
+                }
+                Intent intent=new Intent(ModificationActivity.this,MainActivity.class);
+                startActivity(intent);
+                ModificationActivity.this.finish();
+                break;
             case R.id.ble_state:
                 break;
             case R.id.startsetName:
